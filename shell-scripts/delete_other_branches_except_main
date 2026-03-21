@@ -5,10 +5,10 @@
 
 # If no arguments provided, default to keeping 'main'
 if [ $# -eq 0 ]; then
-    KEEP_BRANCHES="main"
+  KEEP_BRANCHES="main"
 else
-    # Join all arguments with | for regex pattern
-    KEEP_BRANCHES=$(printf '%s|' "$@" | sed 's/|$//')
+  # Join all arguments with | for regex pattern
+  KEEP_BRANCHES=$(printf '%s|' "$@" | sed 's/|$//')
 fi
 
 echo "Keeping branches: $KEEP_BRANCHES"
@@ -18,4 +18,3 @@ echo "Deleting all other local branches..."
 git branch | grep -vE "($KEEP_BRANCHES)" | xargs git branch -D
 
 echo "Branch cleanup completed!"
-
